@@ -1,52 +1,27 @@
-# Foundation for Apps Template
+## tv-info-app 设计过程记录
 
-[![devDependency Status](https://david-dm.org/zurb/foundation-apps-template/dev-status.svg)](https://david-dm.org/zurb/foundation-apps-template#info=devDependencies)
+### 准备工作
+1. 配置package.json文件 ==> 写入需要用到的模块
+2. npm 安装各种模块依赖
+3. 配置gulpfile文件 ==> 引入各种模块依赖
+4. Bower包管理，对js类库文件进行管理，处理各种类库的依赖，下载最佳的版本
 
-This is the default template project for Foundation for Apps, powered by Gulp, Angular, and libsass. It provides you with a basic template to get started with Foundation for Apps and Angular.
+### 页面设计
+1. 遵循SPA设计理念
+2. 由ui-router来控制路由
+3. 每个功能页面为单独的模块
+4. 首页模块包含导航功能模块
+5. 留有占位区，单切换导航时
+6. 对应的模块页面渲染HTML到占位区
 
-If you're already an Angular developer, you may instead want to install the components into your own stack using Bower: `bower install foundation-apps`
-
-## Requirements
-
-You'll need the following software installed to get started.
-
-  - [Node.js](http://nodejs.org): Use the installer for your OS.
-  - [Git](http://git-scm.com/downloads): Use the installer for your OS.
-    - Windows users can also try [Git for Windows](http://git-for-windows.github.io/).
-  - [Gulp](http://gulpjs.com/) and [Bower](http://bower.io): Run `npm install -g gulp bower`
-    - Depending on how Node is configured on your machine, you may need to run `sudo npm install -g gulp bower` instead, if you get an error with the first command.
-
-## Get Started
-
-Clone this repository, where `app` is the name of your app.
-
-```bash
-git clone https://github.com/zurb/foundation-apps-template.git app
-```
-
-Change into the directory.
-
-```bash
-cd app
-```
-
-Install the dependencies. If you're running Mac OS or Linux, you may need to run `sudo npm install` instead, depending on how your machine is configured.
-
-```bash
-npm install
-bower install
-```
-
-While you're working on your project, run:
-
-```bash
-npm start
-```
-
-This will compile the Sass and assemble your Angular app. **Now go to `localhost:8080` in your browser to see it in action.** When you change any file in the `client` folder, the appropriate Gulp task will run to build new files.
-
-To run the compiling process once, without watching any files, use the `build` command.
-
-```bash
-npm start build
-```
+### 功能设计
+1. 每个页面设计有单独的控制器
+2. 一个 `getProp` 指令，来解析返回数据中包含数条api link的数组
+3. 两个过滤器
+4. 过滤器 `capitalize` 解析prop值对应的links
+5. 一个路由依赖注入配置
+6. 封装复用一个主要的控制器回调函数 `genericController`
+7. 该函数主要获取并解析api link
+8. 解析api，默认开启缓存
+9. `$http.jsonp()` 解决api地址跨域问题
+10. 处理api返回数据数组
